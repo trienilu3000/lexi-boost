@@ -3,15 +3,20 @@ import LXModal from '../Modal/Modal';
 import AuthPage from '../../pages/auth/AuthPage';
 
 const Header: React.FC = () => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const showModal = () => {
-        setIsModalOpen(true);
+    const [isModalLogin, setIsModalLogin] = useState(false);
+    const [isModalSigup, setIsModalSignup] = useState(false);
+    const showModalLogin = () => {
+        setIsModalLogin(true);
+    };
+
+    const showModalSignup = () => {
+        setIsModalSignup(true);
     };
 
 
-
     const handleCancel = () => {
-        setIsModalOpen(false);
+        setIsModalLogin(false);
+        setIsModalSignup(false)
     };
     return (
         <header className="flex justify-between items-center p-2  bg-white border-b border-b-gray-300">
@@ -21,14 +26,19 @@ const Header: React.FC = () => {
             </div>
 
             <div className="flex items-center space-x-2 mx-2">
-                <button className=" text-black text-xs px-3 py-2 " onClick={showModal} >Log in</button>
-                <LXModal open={isModalOpen} onCancel={handleCancel}>
-                    <div className='pt-12 mx-5'>
+                <button className=" text-black text-xs px-3 py-2 " onClick={showModalLogin} >Log in</button>
+                <LXModal open={isModalLogin} onCancel={handleCancel}>
+                    <div className='mx-5'>
                         <AuthPage type="login"></AuthPage>
                     </div>
                 </LXModal>
 
-                <button className="text-black text-xs px-3 py-1.5 border rounded-md  ">Sign up</button>
+                <button className="text-black text-xs px-3 py-1.5 border rounded-md  " onClick={showModalSignup}>Sign up</button>
+                <LXModal open={isModalSigup} onCancel={handleCancel}>
+                    <div className='mx-5'>
+                        <AuthPage type="signup"></AuthPage>
+                    </div>
+                </LXModal>
             </div>
         </header>
     );

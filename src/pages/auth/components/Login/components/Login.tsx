@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { login } from "../api/login";
+import { AuthContext } from "../../../../../providers/AuthProvider";
 
 const LoginForm = () => {
+    const auth = useContext(AuthContext);
     const [formData, setFormData] = useState({ email: "", password: "" });
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
@@ -27,6 +29,10 @@ const LoginForm = () => {
 
         try {
             const data = await login(formData.email, formData.password);
+            if (auth) {
+                const hihi = await auth.loginState(formData.email, formData.password);
+                console.log("hihi ==> ", hihi);
+            }
             console.log("Đăng nhập thành công:", data);
         } catch (error) {
             if (error instanceof Error) {
@@ -42,18 +48,18 @@ const LoginForm = () => {
     return (
         <form className="space-y-4 h-full" onSubmit={handleSubmit}>
             {error && <p className="text-red-500 text-center">{error}</p>}
-            <div className="relative flex flex-col bg-black/8 rounded-md focus-within:ring-2 focus-within:ring-blue-500">
+            <div className="relative flex flex-col  rounded-md ">
                 <label className="absolute top-1 left-2.5 text-sm font-medium text-gray-700" htmlFor="email">Email</label>
                 <input
                     type="email"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full mt-4 py-1.5 px-2.5 rounded-md  focus:outline-none"
+                    className="w-full pb-1.5 pt-5 px-2.5 rounded-md  focus:outline-none bg-black/8 focus-within:ring-2 focus-within:ring-blue-500"
                 />
             </div>
 
-            <div className="relative flex flex-col bg-black/8 rounded-md focus-within:ring-2 focus-within:ring-blue-500">
+            <div className="relative flex flex-col rounded-md">
                 <label className="absolute top-1 left-2.5 text-sm font-medium text-gray-700" htmlFor="email">Password</label>
                 <input
                     type="password"
@@ -61,7 +67,7 @@ const LoginForm = () => {
                     placeholder=""
                     value={formData.password}
                     onChange={handleChange}
-                    className="w-full mt-4 py-1.5 px-2.5 rounded-md  focus:outline-none"
+                    className="w-full pb-1.5 pt-5 px-2.5 rounded-md  focus:outline-none bg-black/8 focus-within:ring-2 focus-within:ring-blue-500"
                 />
             </div>
             <button

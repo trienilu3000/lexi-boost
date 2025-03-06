@@ -1,20 +1,15 @@
-export const signup = async (username: string, email: string, password: string) => {
+import authInterceptor from "../../../api/AuthInterceptor";
+
+export const registerUser = async (fullName: string, email: string, password: string,) => {
     try {
-        const response = await fetch("https://your-api.com/auth/register", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ username, email, password }),
-        });
-
-        if (!response.ok) {
-            throw new Error("Đăng ký thất bại");
-        }
-
-        return await response.json();
+        const response = await authInterceptor.post("/auth/register",
+            { fullName, email, password },
+            { withCredentials: true }
+        );
+        return await response;
     } catch (error) {
         console.error("Lỗi đăng ký:", error);
         throw error;
     }
 };
+

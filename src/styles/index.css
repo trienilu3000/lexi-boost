@@ -9,6 +9,10 @@
   text-rendering: optimizeLegibility;
 }
 
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #eaeaea transparent;
+}
 
 body {
   margin: 0;
