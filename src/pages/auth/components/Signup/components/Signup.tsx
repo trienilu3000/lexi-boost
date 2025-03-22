@@ -22,13 +22,15 @@ const SignupForm = () => {
         setLoading(true);
         try {
             const response = await registerUser(data.fullName, data.email, data.password);
+            if (response) {
+                window.location.href = '/login'
+            }
             console.log("Đăng ký thành công:", response);
         } catch (error) {
             console.log("error ==> ", error);
             if (error instanceof AxiosError) {
                 setError(error.response ? error.response.data.error.message : "An unknown error occurred")
             }
-
         } finally {
             setLoading(false);
         }

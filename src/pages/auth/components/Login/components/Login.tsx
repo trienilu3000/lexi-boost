@@ -1,84 +1,86 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { login } from "../api/login";
-import { AuthContext } from "../../../../../providers/AuthProvider";
 
 const LoginForm = () => {
-    const auth = useContext(AuthContext);
-    const [formData, setFormData] = useState({ email: "", password: "" });
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState("");
+  const [formData, setFormData] = useState({ email: "", password: "" });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
+  interface ChangeEvent {
+    target: {
+      name: string;
+      value: string;
+    };
+  }
 
+  const handleChange = (e: ChangeEvent) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-    interface ChangeEvent {
-        target: {
-            name: string;
-            value: string;
-        };
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+
+    try {
+      const data = await login(formData.email, formData.password);
+      console.log("Đăng nhập thành công:", data);
+      return data;
+    } catch (error) {
+      if (error instanceof Error) {
+        setError("Login Failed!");
+      } else {
+        setError("An unknown error occurred");
+      }
+    } finally {
+      setLoading(false);
     }
+  };
 
+  return (
+    <form className="space-y-4 h-full" onSubmit={handleSubmit}>
+      {error && <p className="text-red-500 text-center">{error}</p>}
+      <div className="relative flex flex-col  rounded-md ">
+        <label
+          className="absolute top-1 left-2.5 text-sm font-medium text-gray-700"
+          htmlFor="email"
+        >
+          Email
+        </label>
+        <input
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          className="w-full pb-1.5 pt-5 px-2.5 rounded-md  focus:outline-none bg-black/8 focus-within:ring-2 focus-within:ring-blue-500"
+        />
+      </div>
 
-    const handleChange = (e: ChangeEvent) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
-
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        setLoading(true);
-        setError("");
-
-        try {
-            const data = await login(formData.email, formData.password);
-            if (auth) {
-                const hihi = await auth.loginState(formData.email, formData.password);
-                console.log("hihi ==> ", hihi);
-            }
-            console.log("Đăng nhập thành công:", data);
-        } catch (error) {
-            if (error instanceof Error) {
-                setError("Login Failed!");
-            } else {
-                setError("An unknown error occurred");
-            }
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    return (
-        <form className="space-y-4 h-full" onSubmit={handleSubmit}>
-            {error && <p className="text-red-500 text-center">{error}</p>}
-            <div className="relative flex flex-col  rounded-md ">
-                <label className="absolute top-1 left-2.5 text-sm font-medium text-gray-700" htmlFor="email">Email</label>
-                <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="w-full pb-1.5 pt-5 px-2.5 rounded-md  focus:outline-none bg-black/8 focus-within:ring-2 focus-within:ring-blue-500"
-                />
-            </div>
-
-            <div className="relative flex flex-col rounded-md">
-                <label className="absolute top-1 left-2.5 text-sm font-medium text-gray-700" htmlFor="email">Password</label>
-                <input
-                    type="password"
-                    name="password"
-                    placeholder=""
-                    value={formData.password}
-                    onChange={handleChange}
-                    className="w-full pb-1.5 pt-5 px-2.5 rounded-md  focus:outline-none bg-black/8 focus-within:ring-2 focus-within:ring-blue-500"
-                />
-            </div>
-            <button
-                type="submit"
-                className="w-full bg-black hover:bg-blue-500 hover:text-white  text-white mt-2 py-3 rounded-xl font-semibold transition"
-                disabled={loading}
-            >
-                {loading ? "Đang xử lý..." : "Log in"}
-            </button>
-        </form>
-    );
+      <div className="relative flex flex-col rounded-md">
+        <label
+          className="absolute top-1 left-2.5 text-sm font-medium text-gray-700"
+          htmlFor="email"
+        >
+          Password
+        </label>
+        <input
+          type="password"
+          name="password"
+          placeholder=""
+          value={formData.password}
+          onChange={handleChange}
+          className="w-full pb-1.5 pt-5 px-2.5 rounded-md  focus:outline-none bg-black/8 focus-within:ring-2 focus-within:ring-blue-500"
+        />
+      </div>
+      <button
+        type="submit"
+        className="w-full bg-black hover:bg-blue-500 hover:text-white  text-white mt-2 py-3 rounded-xl font-semibold transition"
+        disabled={loading}
+      >
+        {loading ? "Đang xử lý..." : "Log in"}
+      </button>
+    </form>
+  );
 };
 
 export default LoginForm;

@@ -1,15 +1,19 @@
-import authInterceptor from "../../../api/AuthInterceptor";
-export const login = async (email: string, password: string) => {
-    try {
-        const response = await authInterceptor.post("/auth/login",
-            { email, password },
-            { withCredentials: true }
-        );
-        sessionStorage.setItem("accessToken", response.data.accessToken);
-        return await response;
-    } catch (error) {
-        console.error("Lỗi đăng nhập:", error);
-        throw error;
-    }
-};
+import authInterceptor from "../../../../../services/auth/AuthInterceptor";
+import { useAuthStore } from "../../../../../store/authStore";
 
+export const login = async (email: string, password: string) => {
+  try {
+    const response = await authInterceptor.post(
+      "/auth/login",
+      { email, password },
+      { withCredentials: true }
+    );
+    sessionStorage.setItem("accessToken", response.data.data.accessToken);
+    useAuthStore.getState().setAuthenticated(true);
+    return await response;
+  } catch (error) {
+    console.error("Lỗi đăng nhập:", error);
+    useAuthStore.getState().setAuthenticated(false);
+    throw error;
+  }
+};

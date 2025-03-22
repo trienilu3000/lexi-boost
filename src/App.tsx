@@ -1,18 +1,18 @@
-import Header from './components/Header/Header'
-import AppRouter from './router'
-import './styles/App.css'
+import Header from "./components/layout/Header/Header";
+import Sidebar from "./components/layout/Sidebar/Sidebar";
+import AppRouter from "./routes";
+import "../src/assets/styles/App.css";
 
 function App() {
-
   return (
-    <div className='h-screen'>
-      <Header></Header>
-      <div className='h-full bg-white'>
+    <div className="h-screen flex">
+      <Sidebar></Sidebar>
+      <div className="flex-1 h-full bg-white">
+        <Header></Header>
         <AppRouter></AppRouter>
       </div>
-
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
