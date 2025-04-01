@@ -7,13 +7,18 @@ import authInterceptor from "./AuthInterceptor";
 
 const logout = async () => {
   try {
-    await authInterceptor.post("/auth/logout", {}, { withCredentials: true });
+    const response = await authInterceptor.post(
+      "/auth/logout",
+      {},
+      { withCredentials: true }
+    );
+    return response.data;
   } catch (error) {
     console.error("Logout Failed!:", error);
   } finally {
     sessionStorage.removeItem("accessToken");
     Cookies.remove("refreshToken");
-    window.location.href = "/login";
+    // window.location.href = "/login";
   }
 };
 

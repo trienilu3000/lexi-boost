@@ -75,6 +75,9 @@ export const useAuthStore = create<AuthState>()(
           refreshToken: null,
           isAuthenticated: false,
         });
+        sessionStorage.removeItem("auth-store");
+
+        set({ isLoggingOut: true });
       },
     }),
     {
