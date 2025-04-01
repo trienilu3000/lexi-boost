@@ -150,12 +150,12 @@ const Header: React.FC = () => {
             </svg>
           </button>
           <LXDropdown items={items} trigger="hover" placement="bottomRight">
-            <button className="text-black text-xs p-2">
-              <span className="flex w-[24px] h-[24px]">
+            <button className="text-black text-xs w-[24px] h-[24px] rounded-full flex justify-center items-center overflow-hidden hover:outline-4 hover:outline-[#DBE4E9]">
+              <span className="">
                 <img
                   src="https://www.redditstatic.com/avatars/defaults/v2/avatar_default_0.png"
                   alt="User Avatar"
-                  className="h-full w-full rounded-full"
+                  className="h-full w-full object-cover"
                 ></img>
               </span>
             </button>

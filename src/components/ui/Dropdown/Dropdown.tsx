@@ -73,7 +73,9 @@ const LXDropdown: React.FC<DropdownProps> = ({
       className="relative max-w-full text-center z-200 group"
       ref={dropdownRef}
     >
-      <div onClick={handleClick}>{children}</div>
+      <div className="p-2" onClick={handleClick}>
+        {children}
+      </div>
       <div
         className={`absolute block bg-white py-[5px] w-full min-w-[150px] rounded-[8px] outline-none shadow-[0_6px_16px_0_rgba(0,0,0,0.08),_0_3px_6px_-4px_rgba(0,0,0,0.12),_0_9px_28px_8px_rgba(0,0,0,0.05)] z-2 transition-all duration-200 ease-linear  
              ${trigger === "hover" ? "group-hover:block" : ""}
@@ -91,7 +93,7 @@ const LXDropdown: React.FC<DropdownProps> = ({
               </div>
             )}
             {item.type === "divider" && (
-              <div className="h-[1px] bg-neutral-200 my-2"></div>
+              <div className="h-[1px] bg-neutral-200 my-1"></div>
             )}
           </div>
         ))}
