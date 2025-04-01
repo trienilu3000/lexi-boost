@@ -19,3 +19,9 @@ body {
   background-color: #ffffff;
   overflow: hidden;
 }
+
+button {
+  user-select: none;
+  cursor: pointer;
+}
+

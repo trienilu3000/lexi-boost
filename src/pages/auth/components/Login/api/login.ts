@@ -8,9 +8,7 @@ export const login = async (email: string, password: string) => {
       { email, password },
       { withCredentials: true }
     );
-    sessionStorage.setItem("accessToken", response.data.data.accessToken);
-    useAuthStore.getState().setAuthenticated(true);
-    return await response;
+    return response.data;
   } catch (error) {
     console.error("Lỗi đăng nhập:", error);
     useAuthStore.getState().setAuthenticated(false);

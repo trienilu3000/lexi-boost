@@ -1,6 +1,5 @@
 import Header from "./components/layout/Header/Header";
 import Sidebar from "./components/layout/Sidebar/Sidebar";
-import AppRouter from "./routes";
 import "../src/assets/styles/App.css";
 
 function App() {
@@ -9,7 +8,6 @@ function App() {
       <Sidebar></Sidebar>
       <div className="flex-1 h-full bg-white">
         <Header></Header>
-        <AppRouter></AppRouter>
       </div>
     </div>
   );

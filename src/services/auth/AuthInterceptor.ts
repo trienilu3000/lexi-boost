@@ -1,6 +1,6 @@
 import axios from "axios";
-import { refreshAccessToken } from "./AuthService";
 import { ErrorCode } from "../../types/enums/ErrorCode";
+import { useAuthStore } from "../../store/authStore";
 
 const authInterceptor = axios.create({
   baseURL: "http://localhost:5000/api",
@@ -10,7 +10,7 @@ const authInterceptor = axios.create({
 authInterceptor.interceptors.request.use(
   (config) => {
     console.log("config ==> ", config);
-    const token = sessionStorage.getItem("accessToken");
+    const token = useAuthStore.getState().accessToken;
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -30,11 +30,8 @@ authInterceptor.interceptors.response.use(
       error.response?.status === 401 &&
       error.response?.data.errorCode === ErrorCode.TOKEN_EXPIRED
     ) {
-      const newAccessToken = await refreshAccessToken();
-      if (newAccessToken) {
-        error.config.headers.Authorization = `Bearer ${newAccessToken}`;
-        return axios(error.config);
-      }
+      await useAuthStore.getState().refreshAccessToken();
+      return authInterceptor.request(error.config);
     }
     return Promise.reject(error);
   }

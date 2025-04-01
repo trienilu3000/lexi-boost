@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { login } from "../api/login";
+import { useAuthStore } from "../../../../../store/authStore";
 
 const LoginForm = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const setUserInfo = useAuthStore((state) => state.setUserInfo);
 
   interface ChangeEvent {
     target: {
@@ -13,7 +15,7 @@ const LoginForm = () => {
     };
   }
 
-  const handleChange = (e: ChangeEvent) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -23,15 +25,15 @@ const LoginForm = () => {
     setError("");
 
     try {
-      const data = await login(formData.email, formData.password);
-      console.log("Đăng nhập thành công:", data);
-      return data;
-    } catch (error) {
-      if (error instanceof Error) {
-        setError("Login Failed!");
+      const response = await login(formData.email, formData.password);
+      console.log("response ==> ", response);
+      if (response.success) {
+        setUserInfo(response.data.user, response.data.accessToken);
       } else {
-        setError("An unknown error occurred");
+        setError("Login Failed!");
       }
+    } catch (error) {
+      setError("Login Failed!");
     } finally {
       setLoading(false);
     }
@@ -59,7 +61,7 @@ const LoginForm = () => {
       <div className="relative flex flex-col rounded-md">
         <label
           className="absolute top-1 left-2.5 text-sm font-medium text-gray-700"
-          htmlFor="email"
+          htmlFor="password"
         >
           Password
         </label>
