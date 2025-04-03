@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 
-interface MenuProps {
+export interface MenuProps {
   key?: string | number;
   label?: React.ReactNode; // customize to your liking ^^
   type?: string;
   disabled?: boolean;
 }
-interface DropdownProps {
+export interface DropdownProps {
   children?: React.ReactNode;
   trigger?: "hover" | "click" | "contextMenu";
   menu?: MenuProps[];

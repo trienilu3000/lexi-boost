@@ -164,9 +164,58 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="flex justify-between items-center p-2  bg-white border-b border-b-gray-300">
+    <header className="flex justify-between items-center p-1.5  bg-white border-b border-b-gray-300">
+      <div className="flex items-center mx-2 p-2 cursor-pointer">
+        <svg
+          className="svg"
+          width="20"
+          height="20"
+          viewBox="0 0 38 57"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M19 28.5c0-5.247 4.253-9.5 9.5-9.5 5.247 0 9.5 4.253 9.5 9.5 0 5.247-4.253 9.5-9.5 9.5-5.247 0-9.5-4.253-9.5-9.5z"
+            fillRule="nonzero"
+            fillOpacity="1"
+            fill="#1abcfe"
+            stroke="none"
+          ></path>
+          <path
+            d="M0 47.5C0 42.253 4.253 38 9.5 38H19v9.5c0 5.247-4.253 9.5-9.5 9.5C4.253 57 0 52.747 0 47.5z"
+            fillRule="nonzero"
+            fillOpacity="1"
+            fill="#0acf83"
+            stroke="none"
+          ></path>
+          <path
+            d="M19 0v19h9.5c5.247 0 9.5-4.253 9.5-9.5C38 4.253 33.747 0 28.5 0H19z"
+            fillRule="nonzero"
+            fillOpacity="1"
+            fill="#ff7262"
+            stroke="none"
+          ></path>
+          <path
+            d="M0 9.5C0 14.747 4.253 19 9.5 19H19V0H9.5C4.253 0 0 4.253 0 9.5z"
+            fillRule="nonzero"
+            fillOpacity="1"
+            fill="#f24e1e"
+            stroke="none"
+          ></path>
+          <path
+            d="M0 28.5C0 33.747 4.253 38 9.5 38H19V19H9.5C4.253 19 0 23.253 0 28.5z"
+            fillRule="nonzero"
+            fillOpacity="1"
+            fill="#a259ff"
+            stroke="none"
+          ></path>
+        </svg>
+        <div className="ml-2 font-bold text-black">
+          <div className="text-xs p-0">Lexi Boost</div>
+          <div className="text-[11px] font-medium p-0">lexiboost.vn</div>
+        </div>
+      </div>
       <div className="flex items-center mx-2">
-        <span className="ml-2  font-bold text-black">Welcome back</span>
+        <span className="ml-2 font-bold text-black">Welcome back</span>
       </div>
       {!isAuthenticated ? (
         <div className="flex items-center space-x-2 mx-2">
@@ -205,14 +254,14 @@ const Header: React.FC = () => {
             className=" flex justify-center items-center text-black text-xs p-2"
             onClick={showModalStreak}
           >
-            <span className="flex w-[24px] h-[24px] mr-1 text-gray-200">
+            <span className="flex items-center w-[24px] h-[24px] mr-1 text-gray-200">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="size-6"
+                className="size-5"
               >
                 <path
                   strokeLinecap="round"
@@ -230,22 +279,18 @@ const Header: React.FC = () => {
           </button>
           <button className="text-black text-xs p-2">
             <svg
+              fill="currentColor"
+              height="20"
+              viewBox="0 0 20 20"
+              width="20"
               xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="size-6"
+              className="size-5"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
-              />
+              <path d="M11 18h1a2 2 0 0 1-4 0h3Zm8-3.792v.673A1.12 1.12 0 0 1 17.883 16H2.117A1.12 1.12 0 0 1 1 14.881v-.673a3.947 3.947 0 0 1 1.738-3.277A2.706 2.706 0 0 0 3.926 8.7V7.087a6.07 6.07 0 0 1 12.138 0l.01 1.613a2.7 2.7 0 0 0 1.189 2.235A3.949 3.949 0 0 1 19 14.208Zm-1.25 0a2.7 2.7 0 0 0-1.188-2.242A3.956 3.956 0 0 1 14.824 8.7V7.088a4.819 4.819 0 1 0-9.638 0v1.615a3.956 3.956 0 0 1-1.738 3.266 2.7 2.7 0 0 0-1.198 2.239v.542h15.5v-.542Z"></path>
             </svg>
           </button>
           <LXDropdown menu={items} trigger="click" placement="bottomRight">
-            <button className="text-black text-xs w-[24px] h-[24px] rounded-full flex justify-center items-center overflow-hidden hover:outline-4 hover:outline-[#DBE4E9]">
+            <button className="text-black text-xs w-[32px] h-[32px] rounded-full flex justify-center items-center overflow-hidden hover:outline-4 hover:outline-[#DBE4E9]">
               <span className="">
                 <img
                   src="https://www.redditstatic.com/avatars/defaults/v2/avatar_default_0.png"

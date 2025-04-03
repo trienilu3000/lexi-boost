@@ -4,10 +4,10 @@ import "../src/assets/styles/App.css";
 
 function App() {
   return (
-    <div className="h-screen flex">
-      <Sidebar></Sidebar>
-      <div className="flex-1 h-full bg-white">
-        <Header></Header>
+    <div className="h-screen flex flex-col">
+      <Header></Header>
+      <div className="h-full bg-white flex">
+        <Sidebar></Sidebar>
       </div>
     </div>
   );

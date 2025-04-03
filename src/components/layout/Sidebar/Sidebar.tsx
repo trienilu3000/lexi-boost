@@ -1,205 +1,241 @@
 import React from "react";
+import LXMenu from "../../ui/Menu/Menu";
 
 const Sidebar: React.FC = () => {
+  const items = [
+    {
+      key: "learn",
+      icon: (
+        <svg
+          fill="currentColor"
+          height="20"
+          viewBox="0 0 20 20"
+          width="20"
+          xmlns="http://www.w3.org/2000/svg"
+          className="size-5"
+        >
+          <path d="M19.375 2h-7.292A2.688 2.688 0 0 0 10 3a2.688 2.688 0 0 0-2.083-1H.625A.625.625 0 0 0 0 2.625v14.75A.625.625 0 0 0 .625 18h7.917v-1.25H1.25V3.25h6.667a1.465 1.465 0 0 1 1.458 1.469v11.093h1.25V4.719a1.465 1.465 0 0 1 1.458-1.469h6.667v13.5h-6.667a2.64 2.64 0 0 0-2.708 2.625V20h1.25v-.625A1.388 1.388 0 0 1 12.083 18h7.292a.624.624 0 0 0 .625-.625V2.625A.625.625 0 0 0 19.375 2Z"></path>
+        </svg>
+      ),
+      label: "Learn",
+    },
+    {
+      key: "challenge",
+      icon: (
+        <svg
+          fill="currentColor"
+          height="16"
+          viewBox="0 0 20 20"
+          width="16"
+          xmlns="http://www.w3.org/2000/svg"
+          className="size-5"
+        >
+          <path d="M3.994 14.88c.423.08.85.145 1.278.2l-1.207 2.7-1.14-.51 1.069-2.39Zm10.53.23L16 17.806l1.1-.6-1.259-2.3a24.25 24.25 0 0 1-1.317.202Zm-5.149.26v3.38h1.25v-3.38c-.22 0-.432.005-.625.005s-.4-.002-.625-.005ZM20 11.02C20 13.376 13.459 14 10 14c-3.459 0-10-.623-10-2.98a4.82 4.82 0 0 1 3.5-3.7l.149-.035v-.04a6.355 6.355 0 0 1 12.708 0v.036l.149.034A4.82 4.82 0 0 1 20 11.02Zm-1.25 0a3.783 3.783 0 0 0-2.53-2.485l-.256-.06H15.1v-1.23a5.105 5.105 0 0 0-10.208 0v.527c.308.32 2.074.891 5.1.891 1.012.006 2.023-.07 3.023-.225l.618-.1.2 1.234-.616.1c-1.064.166-2.14.246-3.217.241-.57 0-5.018-.045-6.111-1.405l-.109.025a3.781 3.781 0 0 0-2.53 2.486c.082.475 2.9 1.731 8.75 1.731s8.668-1.256 8.75-1.733v.002Z"></path>
+        </svg>
+      ),
+      label: "Daily Challenges",
+    },
+    {
+      key: "quiz",
+      icon: (
+        <svg
+          fill="currentColor"
+          height="16"
+          viewBox="0 0 20 20"
+          width="16"
+          xmlns="http://www.w3.org/2000/svg"
+          className="size-5"
+        >
+          <path d="M9.45 13.95a1.033 1.033 0 0 1-.71-.29 1.014 1.014 0 0 1 0-1.42 1.033 1.033 0 0 1 1.409 0 1 1 0 0 1-.699 1.71Zm.689-9.9A4.987 4.987 0 0 0 7.111 5a.853.853 0 0 0-.1 1.313l.065.061a.832.832 0 0 0 1.085.026 2.987 2.987 0 0 1 1.752-.658c.8 0 1.245.371 1.245.9 0 .649-.331.94-1.059 1.351a2.772 2.772 0 0 0-1.333 1.481c-.058.14-.089.288-.093.439 0 .252.099.494.276.673a.89.89 0 0 0 .665.266.913.913 0 0 0 .661-.265.925.925 0 0 0 .227-.422c0-.006.046-.261.046-.267.095-.479.365-.733 1.141-1.134a2.452 2.452 0 0 0 1.562-2.29c-.001-1.405-1.1-2.424-3.112-2.424ZM13.376 16h2A4.626 4.626 0 0 0 20 11.379V5.621A4.626 4.626 0 0 0 15.379 1H4.621A4.626 4.626 0 0 0 0 5.621v5.758A4.626 4.626 0 0 0 4.621 16H7.5v-1.25H4.621a3.375 3.375 0 0 1-3.371-3.371V5.621A3.375 3.375 0 0 1 4.621 2.25h10.758a3.375 3.375 0 0 1 3.371 3.371v5.758a3.376 3.376 0 0 1-3.371 3.371h-2.5l-3.763 3.607.866.9L13.376 16Z"></path>
+        </svg>
+      ),
+      label: "PvP Quiz",
+    },
+    {
+      key: "pronounce",
+      icon: (
+        <svg
+          fill="currentColor"
+          height="20"
+          viewBox="0 0 20 20"
+          width="20"
+          xmlns="http://www.w3.org/2000/svg"
+          className="size-5"
+        >
+          <path d="M15.128 0a4.78 4.78 0 0 0-4.774 4.774c.007.214.029.427.065.638l-.137-.138a1.143 1.143 0 0 0-1.719.126L.461 16.2a2.315 2.315 0 0 0 3.241 3.24l10.8-8.1a1.14 1.14 0 0 0 .122-1.718l-.138-.138c.212.036.426.058.64.065a4.773 4.773 0 1 0 0-9.547L15.128 0ZM2.955 18.445a1.07 1.07 0 0 1-1.5-1.5L9.487 6.239l4.175 4.176-10.707 8.03ZM15.128 8.3a3.53 3.53 0 1 1 0-7.06 3.53 3.53 0 0 1 0 7.06Zm-7.186 2.78L10.018 9l.88.88-2.077 2.08-.879-.88Z"></path>
+        </svg>
+      ),
+      label: "Pronounce",
+    },
+    {
+      key: "rank",
+      icon: (
+        <svg
+          fill="currentColor"
+          height="20"
+          viewBox="0 0 20 20"
+          width="20"
+          xmlns="http://www.w3.org/2000/svg"
+          className="size-5"
+        >
+          <path d="M3 16H1.75v-6H3v6Zm5-9H6.75v9H8V7Zm5-3h-1.25v12H13V4Zm5-3h-1.25v15H18V1ZM1.01 17.75V19h17.9v-1.25H1.01Z"></path>
+        </svg>
+      ),
+      label: "Ranking",
+    },
+    {
+      type: "divider",
+    },
+    {
+      key: "community",
+      icon: "",
+      label: "Communities",
+      children: [
+        {
+          key: "31",
+          label: "Create a community",
+          icon: (
+            <svg
+              fill="currentColor"
+              height="20"
+              viewBox="0 0 20 20"
+              width="20"
+              xmlns="http://www.w3.org/2000/svg"
+              className="size-5"
+            >
+              <path d="M18 9.25h-7.25V2a.772.772 0 0 0-.75-.75.772.772 0 0 0-.75.75v7.25H2a.772.772 0 0 0-.75.75c0 .398.352.75.75.75h7.25V18c0 .398.352.75.75.75s.75-.352.75-.75v-7.25H18c.398 0 .75-.352.75-.75a.772.772 0 0 0-.75-.75Z"></path>
+            </svg>
+          ),
+          extra: "",
+        },
+        {
+          key: "lexibut",
+          label: "r/LexiBut",
+          icon: (
+            <img
+              loading="lazy"
+              aria-hidden="true"
+              alt=""
+              className="w-full h-full object-cover"
+              src="https://a.thumbs.redditmedia.com/kIpBoUR8zJLMQlF8azhN-kSBsjVUidHjvZNLuHDONm8.png"
+            ></img>
+          ),
+          extra: (
+            <svg
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+              className="size-4"
+            >
+              {" "}
+              <path d="M15.473 19.566c-.168 0-.333-.036-.485-.107L10 17.127l-4.988 2.332a1.145 1.145 0 0 1-1.62-1.179l.674-5.463L.309 8.793a1.145 1.145 0 0 1 .619-1.9l5.405-1.051L9 1.024a1.192 1.192 0 0 1 2 0l2.665 4.818 5.4 1.046a1.145 1.145 0 0 1 .619 1.9l-3.757 4.024.674 5.464a1.143 1.143 0 0 1-1.135 1.285l.007.005ZM10 15.748l5.345 2.5-.724-5.855 4.026-4.313-5.791-1.122L10 1.8 7.144 6.958 1.353 8.08l4.026 4.311-.724 5.855L10 15.748Z"></path>{" "}
+            </svg>
+          ),
+        },
+      ],
+    },
+    {
+      type: "divider",
+    },
+    {
+      key: "grp",
+      label: "Resources",
+      type: "group",
+      children: [
+        {
+          key: "about",
+          label: "About LexiBoost",
+          icon: (
+            <svg
+              fill="currentColor"
+              height="20"
+              viewBox="0 0 20 20"
+              width="20"
+              xmlns="http://www.w3.org/2000/svg"
+              className="size-5"
+            >
+              <path d="M19.938 9.211a3.25 3.25 0 0 0-3.177-2.642c-.45 0-.895.102-1.3.3a10.812 10.812 0 0 0-4.838-1.379l.81-3.741 2.444.519a1.492 1.492 0 1 0 .2-1.235L11.572.5a1.13 1.13 0 0 0-1.333.862L9.343 5.5a10.77 10.77 0 0 0-4.791 1.357 3.214 3.214 0 0 0-1.315-.289A3.248 3.248 0 0 0 .064 9.2c-.079.4-.085.812-.018 1.214a3.23 3.23 0 0 0 .912 1.754l.066.071v.127c.076 3.69 4.013 6.582 8.975 6.582 4.961 0 8.89-2.889 8.965-6.567l.006-.138.044-.046a3.252 3.252 0 0 0 .939-1.778c.067-.4.062-.81-.015-1.208Zm-1.221 1c-.075.42-.282.805-.59 1.1l-.392.407-.024.625c-.061 3-3.45 5.354-7.716 5.354-4.267 0-7.66-2.353-7.717-5.371l-.024-.6-.4-.433c-.3-.293-.5-.674-.571-1.087a2.138 2.138 0 0 1 .012-.765 2 2 0 0 1 1.942-1.623c.353.003.698.102 1 .286l.337.216.334-.22a9.435 9.435 0 0 1 4.758-1.381h.719a9.427 9.427 0 0 1 4.726 1.4l.347.225.343-.232a1.7 1.7 0 0 1 .96-.3 2 2 0 0 1 1.949 1.629c.049.253.051.512.007.766v.004Z"></path>
+            </svg>
+          ),
+        },
+        {
+          key: "help",
+          label: "Help",
+          icon: (
+            <svg
+              fill="currentColor"
+              height="20"
+              viewBox="0 0 20 20"
+              width="20"
+              xmlns="http://www.w3.org/2000/svg"
+              className="size-5"
+            >
+              <path d="M10 20a10 10 0 1 1 10-10 10.011 10.011 0 0 1-10 10Zm0-18.75A8.75 8.75 0 1 0 18.75 10 8.76 8.76 0 0 0 10 1.25Zm1.611 4.058a2.4 2.4 0 0 1 .994.861c.241.375.366.812.359 1.258a2.04 2.04 0 0 1-.167.854c-.1.229-.238.439-.407.622-.2.208-.413.404-.636.588-.223.188-.4.348-.533.483a1.754 1.754 0 0 0-.328.464 1.326 1.326 0 0 0-.13.591v.78H9.328v-.759a2.216 2.216 0 0 1 .601-1.572c.204-.21.421-.406.65-.588.209-.173.373-.316.492-.431a1.52 1.52 0 0 0 .3-.4 1.154 1.154 0 0 0-.058-1.128 1.192 1.192 0 0 0-.485-.421 1.525 1.525 0 0 0-.677-.151 1.545 1.545 0 0 0-.721.168 1.3 1.3 0 0 0-.713 1.131H7.256a2.628 2.628 0 0 1 1.381-2.293A3.132 3.132 0 0 1 10.175 5c.496-.008.987.097 1.436.308Zm-2.164 9.843a1.088 1.088 0 0 1-.386-.385 1.034 1.034 0 0 1-.144-.537c-.002-.186.048-.37.144-.53.094-.16.227-.293.386-.387a1.03 1.03 0 0 1 .53-.143 1.062 1.062 0 0 1 .926 1.597c-.096.159-.23.291-.389.385a1.034 1.034 0 0 1-.537.144 1.021 1.021 0 0 1-.53-.144Z"></path>
+            </svg>
+          ),
+        },
+        {
+          key: "blog",
+          label: "Blog",
+          icon: (
+            <svg
+              fill="currentColor"
+              height="20"
+              viewBox="0 0 20 20"
+              width="20"
+              xmlns="http://www.w3.org/2000/svg"
+              className="size-5"
+            >
+              <path d="M3 16H1.75v-6H3v6Zm5-9H6.75v9H8V7Zm5-3h-1.25v12H13V4Zm5-3h-1.25v15H18V1ZM1.01 17.75V19h17.9v-1.25H1.01Z"></path>
+            </svg>
+          ),
+        },
+        {
+          type: "diviner",
+        },
+        {
+          key: "comunity",
+          label: "Communities",
+          icon: (
+            <svg
+              fill="currentColor"
+              height="20"
+              viewBox="0 0 20 20"
+              width="20"
+              xmlns="http://www.w3.org/2000/svg"
+              className="size-5"
+            >
+              <path d="M9.875 7.614a2.055 2.055 0 0 0-.974.222 1.62 1.62 0 0 0-.879 1.46v4.2H6.409V6.2h1.552v.93H8c.275-.32.616-.575 1-.748.453-.207.947-.31 1.445-.3.243-.003.487.02.725.071.158.03.31.084.451.161l-.649 1.559a1.731 1.731 0 0 0-.523-.2 2.755 2.755 0 0 0-.574-.059ZM20 10A10 10 0 1 1 10 0a10.011 10.011 0 0 1 10 10Zm-1.25 0a8.722 8.722 0 0 0-2.841-6.435l-4.974 11.986H9.581l5.3-12.809A8.748 8.748 0 1 0 18.75 10Z"></path>
+            </svg>
+          ),
+        },
+        {
+          key: "topic",
+          label: "Topics",
+          icon: (
+            <svg
+              fill="currentColor"
+              height="20"
+              viewBox="0 0 20 20"
+              width="20"
+              xmlns="http://www.w3.org/2000/svg"
+              className="size-5"
+            >
+              <path d="m19.567 18.683-2.194-2.194a3.508 3.508 0 1 0-.884.885l2.194 2.193.884-.884ZM14.5 16.75a2.25 2.25 0 1 1 0-4.5 2.25 2.25 0 0 1 0 4.5ZM5.5 2a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Zm0 5.75a2.25 2.25 0 1 1 0-4.5 2.25 2.25 0 0 1 0 4.5ZM12.125 9h4.75A1.127 1.127 0 0 0 18 7.875v-4.75A1.127 1.127 0 0 0 16.875 2h-4.75A1.127 1.127 0 0 0 11 3.125v4.75A1.127 1.127 0 0 0 12.125 9Zm.125-5.75h4.5v4.5h-4.5v-4.5ZM7.875 11h-4.75A1.127 1.127 0 0 0 2 12.125v4.75A1.127 1.127 0 0 0 3.125 18h4.75A1.127 1.127 0 0 0 9 16.875v-4.75A1.127 1.127 0 0 0 7.875 11Zm-.125 5.75h-4.5v-4.5h4.5v4.5Z"></path>
+            </svg>
+          ),
+        },
+      ],
+    },
+  ];
   return (
-    <div className="w-3xs p-[4px] overflow-hidden select-none ">
-      <div className="relative bg-gray-100 h-full">
-        <div className="flex items-center mx-2 p-2 cursor-pointer">
-          <svg
-            className="svg"
-            width="20"
-            height="20"
-            viewBox="0 0 38 57"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M19 28.5c0-5.247 4.253-9.5 9.5-9.5 5.247 0 9.5 4.253 9.5 9.5 0 5.247-4.253 9.5-9.5 9.5-5.247 0-9.5-4.253-9.5-9.5z"
-              fillRule="nonzero"
-              fillOpacity="1"
-              fill="#1abcfe"
-              stroke="none"
-            ></path>
-            <path
-              d="M0 47.5C0 42.253 4.253 38 9.5 38H19v9.5c0 5.247-4.253 9.5-9.5 9.5C4.253 57 0 52.747 0 47.5z"
-              fillRule="nonzero"
-              fillOpacity="1"
-              fill="#0acf83"
-              stroke="none"
-            ></path>
-            <path
-              d="M19 0v19h9.5c5.247 0 9.5-4.253 9.5-9.5C38 4.253 33.747 0 28.5 0H19z"
-              fillRule="nonzero"
-              fillOpacity="1"
-              fill="#ff7262"
-              stroke="none"
-            ></path>
-            <path
-              d="M0 9.5C0 14.747 4.253 19 9.5 19H19V0H9.5C4.253 0 0 4.253 0 9.5z"
-              fillRule="nonzero"
-              fillOpacity="1"
-              fill="#f24e1e"
-              stroke="none"
-            ></path>
-            <path
-              d="M0 28.5C0 33.747 4.253 38 9.5 38H19V19H9.5C4.253 19 0 23.253 0 28.5z"
-              fillRule="nonzero"
-              fillOpacity="1"
-              fill="#a259ff"
-              stroke="none"
-            ></path>
-          </svg>
-          <div className="ml-2  font-bold text-black">
-            <div className="text-xs p-0">Lexi Boost</div>
-            <div className="text-[11px] font-medium p-0">lexiboost.vn</div>
-          </div>
-        </div>
-        <div className="flex flex-col gap-[8px] mt-4 px-[5px] text-[13px] font-medium text-black cursor-pointer">
-          <div className="flex items-center gap-[10px] bg-gray-200 px-[10px] py-[7px] rounded-[5px]">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="size-4 "
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"
-              />
-            </svg>
-
-            <span>Learn</span>
-          </div>
-          <div className="flex items-center gap-[10px] px-[10px] py-[7px] rounded-[5px]">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="size-4"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M19.114 5.636a9 9 0 0 1 0 12.728M16.463 8.288a5.25 5.25 0 0 1 0 7.424M6.75 8.25l4.72-4.72a.75.75 0 0 1 1.28.53v15.88a.75.75 0 0 1-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.009 9.009 0 0 1 2.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75Z"
-              />
-            </svg>
-            <span>Pronounce</span>
-          </div>
-          <div>
-            <div className="flex items-center gap-[10px]  px-[10px] py-[7px] rounded-[5px]">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="size-4"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
-                />
-              </svg>
-
-              <span>Practice</span>
-            </div>
-
-            <div className="flex flex-col gap-[5px] ml-[30px] text-[12px] font-medium text-black">
-              <div className="flex items-center justify-between px-[10px] py-[5px]">
-                <span>Vocabulary</span>
-                <span className="border border-gray-400 bg-gray-200 rounded-[5px] px-[4px] text-[10px]">
-                  18
-                </span>
-              </div>
-              <div className="flex items-center justify-between px-[10px] py-[5px]">
-                <span>Reading</span>
-                <span className="border border-gray-400 bg-gray-200 rounded-[5px] px-[4px] text-[10px]">
-                  18
-                </span>
-              </div>
-              <div className="flex items-center justify-between px-[10px] py-[5px]">
-                <span>Listening</span>
-                <span className="border border-gray-400 bg-gray-200 rounded-[5px] px-[4px] text-[10px]">
-                  18
-                </span>
-              </div>
-              <div className="flex items-center justify-between px-[10px] py-[5px]">
-                <span>Speaking</span>
-                <span className="border border-gray-400 bg-gray-200 rounded-[5px] px-[4px] text-[10px]">
-                  18
-                </span>
-              </div>
-            </div>
-          </div>
-          <div className="flex items-center gap-[10px] bg-gray-200 px-[10px] py-[7px] rounded-[5px]">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="size-4"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M16.5 18.75h-9m9 0a3 3 0 0 1 3 3h-15a3 3 0 0 1 3-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 0 1-.982-3.172M9.497 14.25a7.454 7.454 0 0 0 .981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 0 0 7.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 0 0 2.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 0 1 2.916.52 6.003 6.003 0 0 1-5.395 4.972m0 0a6.726 6.726 0 0 1-2.749 1.35m0 0a6.772 6.772 0 0 1-3.044 0"
-              />
-            </svg>
-
-            <span>Ranking</span>
-          </div>
-        </div>
-
-        <div className="absolute flex flex-col w-full bottom-0 text-[13px] font-medium text-black">
-          <div className="flex items-center gap-2 px-[10px] py-[5px]">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="size-4"
-            >
-              <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
-              <path d="M9.1 9a3 3 0 0 1 5.82 1c0 2-3 3-3 3" />
-              <path d="M12 17h.01" />
-            </svg>
-            <span>Support</span>
-          </div>
-          <div className="flex items-center gap-2 px-[10px] py-[5px]">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="size-4"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M10.343 3.94c.09-.542.56-.94 1.11-.94h1.093c.55 0 1.02.398 1.11.94l.149.894c.07.424.384.764.78.93.398.164.855.142 1.205-.108l.737-.527a1.125 1.125 0 0 1 1.45.12l.773.774c.39.389.44 1.002.12 1.45l-.527.737c-.25.35-.272.806-.107 1.204.165.397.505.71.93.78l.893.15c.543.09.94.559.94 1.109v1.094c0 .55-.397 1.02-.94 1.11l-.894.149c-.424.07-.764.383-.929.78-.165.398-.143.854.107 1.204l.527.738c.32.447.269 1.06-.12 1.45l-.774.773a1.125 1.125 0 0 1-1.449.12l-.738-.527c-.35-.25-.806-.272-1.203-.107-.398.165-.71.505-.781.929l-.149.894c-.09.542-.56.94-1.11.94h-1.094c-.55 0-1.019-.398-1.11-.94l-.148-.894c-.071-.424-.384-.764-.781-.93-.398-.164-.854-.142-1.204.108l-.738.527c-.447.32-1.06.269-1.45-.12l-.773-.774a1.125 1.125 0 0 1-.12-1.45l.527-.737c.25-.35.272-.806.108-1.204-.165-.397-.506-.71-.93-.78l-.894-.15c-.542-.09-.94-.56-.94-1.109v-1.094c0-.55.398-1.02.94-1.11l.894-.149c.424-.07.765-.383.93-.78.165-.398.143-.854-.108-1.204l-.526-.738a1.125 1.125 0 0 1 .12-1.45l.773-.773a1.125 1.125 0 0 1 1.45-.12l.737.527c.35.25.807.272 1.204.107.397-.165.71-.505.78-.929l.15-.894Z"
-              />
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-              />
-            </svg>
-
-            <span>Setting</span>
-          </div>
-        </div>
-      </div>
-    </div>
+    <LXMenu
+      style={{ width: 297 }}
+      items={items}
+      className="py-[12px] pl-[12px] pr-[24px]"
+      defaultOpenKeys={["community"]}
+      defaultSelectedKeys={["learn"]}
+    ></LXMenu>
   );
 };
 
