@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useSidebarStore } from "../../../store/menuStore";
+// import { motion } from "framer-motion";
 
 export interface MenuItem {
   key?: string;
@@ -31,23 +32,21 @@ const LXMenu: React.FC<MenuProps> = ({
 }) => {
   const { activeMenu, expanded, setActiveMenu, setExpanded } =
     useSidebarStore();
-
+  const isFirstRun = useRef(true);
   useEffect(() => {
+    if (isFirstRun.current) {
+      isFirstRun.current = false;
+      return;
+    }
     if (defaultSelectedKeys.length > 0) {
       setActiveMenu([defaultSelectedKeys[0]]);
     }
     if (defaultOpenKeys.length > 0) {
-      console.log("defaultOpenKeys ==> ", defaultOpenKeys);
-      defaultOpenKeys.forEach((item) => {
-        if (!expanded?.includes(item)) {
-          console.log("item ==> ", item);
-          setTimeout(() => setExpanded(item), 100);
-        }
-        console.log(expanded);
-      });
+      setExpanded(defaultOpenKeys);
     }
-  }, []);
-  console.log(expanded);
+    console.log(expanded);
+  }, [defaultOpenKeys]);
+
   return (
     <div
       style={style}
@@ -63,7 +62,7 @@ const LXMenu: React.FC<MenuProps> = ({
                 <div className="">
                   <div
                     className={`flex items-center justify-between gap-[10px] px-4 py-2.5 rounded-[5px] hover:bg-[#f3f6f6bf]`}
-                    onClick={() => setExpanded(item.key || "")}
+                    onClick={() => setExpanded([item.key || ""])}
                   >
                     <div className="flex items-center text-[#576F76]">
                       <span>{item.icon}</span>
@@ -94,7 +93,7 @@ const LXMenu: React.FC<MenuProps> = ({
                       {item.children.map((child, index) => (
                         <div
                           key={child.key || `${child.label}-${index}`}
-                          className="flex flex-col gap-[10px]"
+                          className="flex flex-col gap-[10px] "
                         >
                           {child.type === "diviner" ? (
                             <div className="h-[0.8px] bg-neutral-200 my-4"></div>

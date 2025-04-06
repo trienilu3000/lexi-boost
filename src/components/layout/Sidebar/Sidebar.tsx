@@ -87,7 +87,7 @@ const Sidebar: React.FC = () => {
       type: "divider",
     },
     {
-      key: "community",
+      key: "communities",
       icon: "",
       label: "Communities",
       children: [
@@ -138,7 +138,7 @@ const Sidebar: React.FC = () => {
       type: "divider",
     },
     {
-      key: "grp",
+      key: "resource",
       label: "Resources",
       type: "group",
       children: [
@@ -194,7 +194,7 @@ const Sidebar: React.FC = () => {
           type: "diviner",
         },
         {
-          key: "comunity",
+          key: "community",
           label: "Communities",
           icon: (
             <svg
@@ -230,10 +230,10 @@ const Sidebar: React.FC = () => {
   ];
   return (
     <LXMenu
-      style={{ width: 297 }}
+      style={{ width: 305 }}
       items={items}
-      className="py-[12px] pl-[12px] pr-[24px]"
-      defaultOpenKeys={["community"]}
+      className="py-[16px] pl-[16px] pr-[24px]"
+      defaultOpenKeys={["communities", "resource"]}
       defaultSelectedKeys={["learn"]}
     ></LXMenu>
   );

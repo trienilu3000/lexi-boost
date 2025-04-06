@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import LXModal from "../../ui/Modal/Modal";
 import AuthPage from "../../../pages/auth/AuthPage";
 import { useAuthStore } from "../../../store/authStore";
-import StreakTracker from "../../../pages/StreakTracker/components/StreakTracker";
 import LXDropdown from "../../ui/Dropdown/Dropdown";
 import AuthAPI from "../../../services/auth/authApi";
 
@@ -232,9 +231,7 @@ const Header: React.FC = () => {
           </LXModal>
 
           <LXModal open={isModalStreak} onCancel={handleCancel}>
-            <div className="mx-5">
-              <StreakTracker></StreakTracker>
-            </div>
+            <div className="mx-5"></div>
           </LXModal>
           <button
             className="text-black text-xs px-3 py-1.5 border rounded-md  "
