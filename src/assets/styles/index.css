@@ -3,15 +3,14 @@
 
 :root {
   font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol',sans-serif;
-  line-height: 1.5;
   font-weight: 400;
   font-size: 16px;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
+  scrollbar-width: thin;
 }
 
 html {
-  scrollbar-width: thin;
   scrollbar-color: #eaeaea transparent;
 }
 
@@ -21,6 +20,7 @@ body {
   overflow: hidden;
   word-break: break-word;
   overflow-wrap:break-word;
+  line-height: 1.5;
 }
 
 button {
@@ -28,3 +28,44 @@ button {
   cursor: pointer;
 }
 
+.scrollbar-thin {
+  scrollbar-width: thin;
+}
+
+.styled-scrollbars {
+  scrollbar-color: transparent transparent;
+  scrollbar-width: thin;
+  scrollbar-gutter: stable;
+  --scrollbar-background: #ffffff;
+}
+
+.styled-scrollbars {
+  scrollbar-color: transparent transparent;
+  scrollbar-width: thin;
+  scrollbar-gutter: stable;
+  --scrollbar-background: #ffffff;
+}
+
+
+.styled-scrollbars::-webkit-scrollbar {
+  width: 6px;
+}
+
+.styled-scrollbars::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+
+.styled-scrollbars:hover {
+  scrollbar-color: #eaeaea transparent;
+}
+
+.styled-scrollbars:hover::-webkit-scrollbar-thumb {
+  background-color: #eaeaea;
+}
+
+.h-screen-without-header {
+  height: calc(var(--viewport-height, 100vh) - var(--shreddit-header-height) - 1px);
+}

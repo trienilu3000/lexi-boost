@@ -209,7 +209,7 @@ const Header: React.FC = () => {
           ></path>
         </svg>
         <div className="ml-2 font-bold text-black">
-          <div className="text-xs p-0">Lexi Boost</div>
+          <div className="text-xs p-0 text-[#FF4500]">Lexi Boost</div>
           <div className="text-[11px] font-medium p-0">lexiboost.vn</div>
         </div>
       </div>
@@ -234,7 +234,7 @@ const Header: React.FC = () => {
             <div className="mx-5"></div>
           </LXModal>
           <button
-            className="text-black text-xs px-3 py-1.5 border rounded-md  "
+            className="text-white bg-[#FF4500] text-[14px] font-semibold px-3 py-2 border rounded-[999px]"
             onClick={showModalSignup}
           >
             Sign up

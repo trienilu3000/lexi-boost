@@ -1,7 +1,13 @@
 import React from "react";
 import LXMenu from "../../ui/Menu/Menu";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar: React.FC = () => {
+  const navigate = useNavigate();
+  const handleMenuClick = ({ key }: { key: string }) => {
+    navigate(key);
+  };
+
   const items = [
     {
       key: "learn",
@@ -230,9 +236,9 @@ const Sidebar: React.FC = () => {
   ];
   return (
     <LXMenu
-      style={{ width: 305 }}
+      onClick={handleMenuClick}
       items={items}
-      className="py-[16px] pl-[16px] pr-[24px]"
+      className="pl-[16px] pr-[24px] w-[271px]"
       defaultOpenKeys={["communities", "resource"]}
       defaultSelectedKeys={["learn"]}
     ></LXMenu>

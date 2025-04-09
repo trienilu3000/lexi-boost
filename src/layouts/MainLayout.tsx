@@ -9,7 +9,7 @@ const MainLayout = () => {
       <div className="h-full bg-white flex">
         <Sidebar></Sidebar>
         <div className="flex flex-col mx-auto">
-          <div className="px-[24px] box-border mx-auto justify-stretch items-stretch w-[1120px]">
+          <div className="flex px-[24px] box-border justify-stretch items-stretch w-[1120px] mx-auto">
             <Outlet />
           </div>
         </div>
