@@ -15,6 +15,7 @@ export const useSidebarStore = create<MenuItemState>()(
       expanded: [],
       setActiveMenu: (menu: string[]) => set({ activeMenu: menu }),
       setExpanded: (items: string[]) => {
+        console.log("items ==> ", items);
         const newExpanded = [...get().expanded];
         items.forEach((item) => {
           const index = newExpanded.indexOf(item);
