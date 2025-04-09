@@ -45,14 +45,13 @@ const LXMenu: React.FC<MenuProps> = ({
       isFirstRun.current = false;
       return;
     }
-    if (defaultSelectedKeys.length > 0) {
+    if (!activeMenu || defaultSelectedKeys.length > 0) {
       setActiveMenu([defaultSelectedKeys[0]]);
     }
-    if (defaultOpenKeys.length > 0) {
+    if (!expanded || defaultOpenKeys.length > 0) {
       setExpanded(defaultOpenKeys);
     }
-    console.log(expanded);
-  }, [defaultOpenKeys]);
+  }, []);
 
   return (
     <div

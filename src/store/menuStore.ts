@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 export interface MenuItemState {
   activeMenu: string[] | null;
@@ -7,23 +8,28 @@ export interface MenuItemState {
   setExpanded: (item: string[]) => void;
 }
 
-export const useSidebarStore = create<MenuItemState>((set) => ({
-  activeMenu: null,
-  expanded: [],
-  setActiveMenu: (menu: string[]) => set({ activeMenu: menu }),
-  setExpanded: (items: string[]) => {
-    set((state) => {
-      const newExpanded = state.expanded.slice();
-      items.forEach((item) => {
-        if (newExpanded.includes(item)) {
+export const useSidebarStore = create<MenuItemState>()(
+  persist(
+    (set, get) => ({
+      activeMenu: null,
+      expanded: [],
+      setActiveMenu: (menu: string[]) => set({ activeMenu: menu }),
+      setExpanded: (items: string[]) => {
+        const newExpanded = [...get().expanded];
+        items.forEach((item) => {
           const index = newExpanded.indexOf(item);
-          newExpanded.splice(index, 1);
-        } else {
-          newExpanded.push(item);
-        }
-      });
+          if (index > -1) {
+            newExpanded.splice(index, 1);
+          } else {
+            newExpanded.push(item);
+          }
+        });
 
-      return { expanded: newExpanded };
-    });
-  },
-}));
+        set({ expanded: newExpanded });
+      },
+    }),
+    {
+      name: "sidebar-storage",
+    }
+  )
+);
