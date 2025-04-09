@@ -1,11 +1,11 @@
 import MainLayout from "../layouts/MainLayout";
-import learnRoutes from "./modules/learn.routes";
+import { mainRoutes } from "./modules/main.routes";
 
 const AppRoutes = [
   {
     path: "/",
     element: <MainLayout />,
-    children: [...learnRoutes],
+    children: [...mainRoutes],
   },
 ];
 
